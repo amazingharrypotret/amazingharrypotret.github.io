@@ -1,6 +1,6 @@
 /* =============================================
-   COMPONENTS.CSS — Retro Terminal Style
-   Black / White / Green palette
+   COMPONENTS.CSS — Slytherin Light Theme
+   Deep Green / Silver / Off-White palette
    ============================================= */
 
 /* ── Navigation ─────────────────────────────── */
@@ -15,9 +15,10 @@
 }
 
 .nav.scrolled {
-    background: rgba(0, 0, 0, 0.96);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-    backdrop-filter: blur(8px);
+    background: rgba(247, 246, 241, 0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 16px rgba(26, 71, 42, 0.07);
 }
 
 .nav-inner {
@@ -40,7 +41,7 @@
 
 .nav-logo::before {
     content: '> ';
-    opacity: 0.5;
+    opacity: 0.45;
 }
 
 .nav-links {
@@ -62,9 +63,13 @@
     transition: var(--transition);
 }
 
-.nav-links a:hover,
+.nav-links a:hover {
+    color: var(--green);
+}
+
 .nav-links a.active {
     color: var(--green);
+    font-weight: 700;
 }
 
 /* Hamburger */
@@ -79,13 +84,13 @@
 .nav-hamburger span {
     display: block;
     width: 22px;
-    height: 1px;
-    background: var(--text-primary);
+    height: 1.5px;
+    background: var(--green);
     transition: var(--transition);
 }
 
 .nav-hamburger.open span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(6.5px) rotate(45deg);
 }
 
 .nav-hamburger.open span:nth-child(2) {
@@ -93,7 +98,7 @@
 }
 
 .nav-hamburger.open span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(-6.5px) rotate(-45deg);
 }
 
 /* Mobile nav */
@@ -103,9 +108,9 @@
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background: #000;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-    padding: 1rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem;
     z-index: 999;
     flex-direction: column;
     gap: 0.1rem;
@@ -127,6 +132,7 @@
 .nav-mobile a:hover,
 .nav-mobile a.active {
     color: var(--green);
+    background: var(--green-faint);
 }
 
 @media (max-width: 768px) {
@@ -146,6 +152,7 @@
     align-items: center;
     padding-top: var(--nav-height);
     border-bottom: 1px solid var(--border);
+    background: var(--bg-primary);
 }
 
 .hero-content {
@@ -159,7 +166,7 @@
     font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 400;
-    color: var(--green);
+    color: var(--green-bright);
     margin-bottom: 1.25rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -170,19 +177,18 @@
 
 .hero-eyebrow::before {
     content: '$ ';
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .hero-title {
     margin-bottom: 0.5rem;
-    color: var(--white);
 }
 
 .hero-typewriter {
     display: block;
     font-family: var(--font-mono);
     font-size: clamp(0.95rem, 2vw, 1.2rem);
-    font-weight: 300;
+    font-weight: 400;
     color: var(--text-secondary);
     margin-top: 0.5rem;
     min-height: 1.8em;
@@ -205,10 +211,11 @@
 }
 
 .hero-desc {
-    font-size: 0.93rem;
+    font-size: 0.95rem;
     margin: 1.5rem 0 2.25rem;
     max-width: 480px;
     line-height: 1.9;
+    color: var(--text-secondary);
 }
 
 .hero-btns {
@@ -231,17 +238,18 @@
     align-items: center;
     justify-content: center;
     color: var(--text-secondary);
-    font-size: 0.9rem;
     transition: var(--transition);
+    background: var(--bg-card);
 }
 
 .social-link:hover {
     border-color: var(--green);
     color: var(--green);
     box-shadow: var(--shadow-glow);
+    background: var(--green-faint);
 }
 
-/* Avatar — purely typographic in retro style */
+/* Avatar */
 .hero-avatar {
     flex-shrink: 0;
     display: flex;
@@ -253,15 +261,15 @@
     width: 240px;
     height: 240px;
     object-fit: cover;
-    border: 1px solid rgba(0, 255, 65, 0.3);
-    filter: grayscale(100%) contrast(1.1);
+    border: 2px solid var(--border-accent);
+    filter: sepia(20%) saturate(0.6) hue-rotate(80deg);
     display: block;
 }
 
 .hero-avatar-badge {
     width: 100%;
     background: var(--green);
-    color: var(--black);
+    color: var(--bg-primary);
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 700;
@@ -300,19 +308,16 @@
     0%,
     100% {
         opacity: 0.3;
-        transform: scaleY(0.8);
     }
 
     50% {
-        opacity: 1;
-        transform: scaleY(1);
+        opacity: 0.9;
     }
 }
 
 @media (max-width: 900px) {
     .hero-content {
         grid-template-columns: 1fr;
-        text-align: left;
     }
 
     .hero-avatar {
@@ -324,6 +329,8 @@
 .stats-bar {
     display: flex;
     border: 1px solid var(--border);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-card);
     flex-wrap: wrap;
 }
 
@@ -383,7 +390,6 @@
     font-size: 1.4rem;
     margin-bottom: 0.6rem;
     display: block;
-    filter: grayscale(80%);
 }
 
 .skill-card-name {
@@ -393,11 +399,12 @@
     margin-bottom: 0.6rem;
     transition: var(--transition);
     letter-spacing: 0.04em;
+    color: var(--text-primary);
 }
 
 .skill-bar-track {
     height: 2px;
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(26, 71, 42, 0.1);
 }
 
 .skill-bar-fill {
@@ -416,7 +423,7 @@
 .timeline {
     position: relative;
     padding-left: 2rem;
-    border-left: 1px solid rgba(0, 255, 65, 0.2);
+    border-left: 2px solid rgba(26, 71, 42, 0.2);
 }
 
 .timeline-item {
@@ -429,8 +436,8 @@
     position: absolute;
     left: -2rem;
     top: 6px;
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     background: var(--green);
     margin-left: -3px;
 }
@@ -438,8 +445,8 @@
 .timeline-date {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    color: var(--green);
-    font-weight: 500;
+    color: var(--green-bright);
+    font-weight: 600;
     letter-spacing: 0.1em;
     margin-bottom: 0.3rem;
 }
@@ -449,7 +456,7 @@
     font-size: 0.95rem;
     font-weight: 700;
     margin-bottom: 0.2rem;
-    color: var(--white);
+    color: var(--green);
 }
 
 .timeline-org {
@@ -472,18 +479,19 @@
     transition: var(--transition);
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-card);
 }
 
 .project-card:hover {
-    border-color: rgba(0, 255, 65, 0.3);
+    border-color: var(--border-accent);
     box-shadow: var(--shadow-glow);
+    background: var(--bg-card-hover);
 }
 
 .project-icon {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     display: block;
-    filter: grayscale(80%);
 }
 
 .project-title {
@@ -491,11 +499,12 @@
     font-size: 0.95rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: var(--white);
+    color: var(--green);
+    transition: var(--transition);
 }
 
 .project-card:hover .project-title {
-    color: var(--green);
+    color: var(--green-mid);
 }
 
 .project-desc {
@@ -544,6 +553,7 @@
     margin-bottom: 3rem;
     border: 1px solid var(--border);
     width: fit-content;
+    background: var(--bg-card);
 }
 
 .filter-tab {
@@ -554,11 +564,11 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: var(--transition);
     background: transparent;
     border: none;
     border-right: 1px solid var(--border);
     color: var(--text-muted);
+    transition: var(--transition);
 }
 
 .filter-tab:last-child {
@@ -566,13 +576,13 @@
 }
 
 .filter-tab:hover {
-    color: var(--white);
-    background: var(--bg-card-hover);
+    color: var(--green);
+    background: var(--green-faint);
 }
 
 .filter-tab.active {
     background: var(--green);
-    color: var(--black);
+    color: var(--bg-primary);
 }
 
 /* ── Article Cards ───────────────────────────── */
@@ -584,10 +594,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
+    box-shadow: var(--shadow-card);
 }
 
 .article-card:hover {
-    border-color: rgba(0, 255, 65, 0.3);
+    border-color: var(--border-accent);
     box-shadow: var(--shadow-glow);
 }
 
@@ -598,7 +609,6 @@
     font-family: var(--font-mono);
     font-size: 0.72rem;
     color: var(--text-muted);
-    letter-spacing: 0.04em;
 }
 
 .article-meta .dot {
@@ -609,16 +619,13 @@
 }
 
 .article-source {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
     font-family: var(--font-mono);
     font-size: 0.68rem;
     font-weight: 700;
     padding: 0.15rem 0.5rem;
     background: var(--green-faint);
     color: var(--green);
-    border: 1px solid rgba(0, 255, 65, 0.25);
+    border: 1px solid rgba(26, 71, 42, 0.2);
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
@@ -628,12 +635,12 @@
     font-size: 0.95rem;
     font-weight: 700;
     line-height: 1.4;
-    color: var(--white);
+    color: var(--green);
     transition: var(--transition);
 }
 
 .article-card:hover .article-title {
-    color: var(--green);
+    color: var(--green-mid);
 }
 
 .article-excerpt {
@@ -642,6 +649,7 @@
     line-height: 1.75;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -663,7 +671,7 @@
 }
 
 .article-read-more:hover {
-    opacity: 0.75;
+    color: var(--green-mid);
 }
 
 /* ── Hobby Cards ──────────────────────────────── */
@@ -672,18 +680,19 @@
     border: 1px solid var(--border);
     padding: 2rem 1.5rem;
     transition: var(--transition);
+    box-shadow: var(--shadow-card);
 }
 
 .hobby-card:hover {
-    border-color: rgba(0, 255, 65, 0.3);
+    border-color: var(--border-accent);
     box-shadow: var(--shadow-glow);
+    background: var(--bg-card-hover);
 }
 
 .hobby-icon {
     font-size: 2rem;
     margin-bottom: 0.75rem;
     display: block;
-    filter: grayscale(60%);
 }
 
 .hobby-name {
@@ -692,10 +701,6 @@
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
     letter-spacing: 0.04em;
-    color: var(--white);
-}
-
-.hobby-card:hover .hobby-name {
     color: var(--green);
 }
 
@@ -713,11 +718,13 @@
     display: flex;
     gap: 1.25rem;
     transition: var(--transition);
+    box-shadow: var(--shadow-card);
 }
 
 .social-panel:hover {
-    border-color: rgba(0, 255, 65, 0.3);
+    border-color: var(--border-accent);
     box-shadow: var(--shadow-glow);
+    background: var(--bg-card-hover);
 }
 
 .social-panel-icon {
@@ -729,15 +736,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid var(--border);
-    filter: grayscale(80%);
-}
-
-.social-panel:hover .social-panel-icon {
-    filter: grayscale(0%);
-}
-
-.social-panel-content {
-    flex: 1;
+    background: var(--green-faint);
 }
 
 .social-panel-title {
@@ -745,7 +744,7 @@
     font-weight: 700;
     font-size: 0.88rem;
     margin-bottom: 0.25rem;
-    letter-spacing: 0.03em;
+    color: var(--green);
 }
 
 .social-panel-desc {
@@ -757,12 +756,13 @@
 .page-hero {
     padding: 160px 0 80px;
     border-bottom: 1px solid var(--border);
+    background: var(--bg-primary);
 }
 
 /* ── Footer ──────────────────────────────────── */
 .footer {
-    background: var(--bg-secondary);
-    border-top: 1px solid rgba(0, 255, 65, 0.15);
+    background: var(--green);
+    border-top: 2px solid var(--green);
     padding: 2.5rem 0;
     text-align: center;
 }
@@ -771,7 +771,7 @@
     font-family: var(--font-mono);
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--green);
+    color: var(--bg-primary);
     margin-bottom: 1.25rem;
     display: block;
 }
@@ -781,6 +781,19 @@
     justify-content: center;
     gap: 0.4rem;
     margin-bottom: 1.25rem;
+}
+
+.footer .social-link {
+    border-color: rgba(247, 246, 241, 0.3);
+    color: rgba(247, 246, 241, 0.7);
+    background: transparent;
+}
+
+.footer .social-link:hover {
+    border-color: var(--bg-primary);
+    color: var(--bg-primary);
+    background: rgba(247, 246, 241, 0.1);
+    box-shadow: none;
 }
 
 .footer-links {
@@ -796,17 +809,16 @@
     font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: rgba(247, 246, 241, 0.6);
     transition: var(--transition);
 }
 
 .footer-links a:hover {
-    color: var(--green);
+    color: var(--bg-primary);
 }
 
 .footer-copy {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
+    color: rgba(247, 246, 241, 0.45);
 }

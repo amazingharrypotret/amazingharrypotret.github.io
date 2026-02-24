@@ -1,32 +1,45 @@
 /* =============================================
-   BASE.CSS — Retro Minimalist Terminal Theme
-   Black / White / Green  |  B&W + #00ff41
+   BASE.CSS — Slytherin Theme
+   Slytherin Green / Silver / Off-White
    ============================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600;700;900&display=swap');
 
 /* ── Design Tokens ──────────────────────────── */
 :root {
-  --black: #000000;
-  --white: #f5f5f0;
-  /* slight warm white, not harsh */
-  --green: #00ff41;
-  /* terminal phosphor green */
-  --green-dim: #00c832;
-  /* muted green for secondary */
-  --green-faint: rgba(0, 255, 65, 0.07);
-  --green-glow: rgba(0, 255, 65, 0.18);
+  /* Slytherin palette */
+  --green: #1a472a;
+  /* deep Slytherin green */
+  --green-mid: #2d6a4f;
+  /* mid green for hover states */
+  --green-bright: #3a8c5c;
+  /* lighter green for small accents */
+  --silver: #aaa9ad;
+  /* Slytherin silver */
+  --gold: #8b7355;
+  /* subtle warm tone for variety */
 
-  --bg-primary: #000000;
-  --bg-secondary: #080808;
-  --bg-card: #0c0c0c;
-  --bg-card-hover: #111111;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-accent: rgba(0, 255, 65, 0.35);
+  --green-faint: rgba(26, 71, 42, 0.07);
+  --green-glow: rgba(26, 71, 42, 0.15);
 
-  --text-primary: #f5f5f0;
-  --text-secondary: rgba(245, 245, 240, 0.55);
-  --text-muted: rgba(245, 245, 240, 0.28);
+  /* Backgrounds — light/off-white */
+  --bg-primary: #f7f6f1;
+  /* warm parchment-ish white */
+  --bg-secondary: #eeede7;
+  /* slightly darker for contrast sections */
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f4f1;
+  /* very light green tint on hover */
+
+  /* Borders */
+  --border: rgba(26, 71, 42, 0.12);
+  --border-accent: rgba(26, 71, 42, 0.4);
+
+  /* Text */
+  --text-primary: #111a14;
+  /* near-black with a green undertone */
+  --text-secondary: rgba(17, 26, 20, 0.58);
+  --text-muted: rgba(17, 26, 20, 0.36);
 
   /* Typography */
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
@@ -36,14 +49,14 @@
   --section-padding: 100px 0;
   --card-padding: 2rem;
   --border-radius: 0px;
-  /* sharp corners = retro */
+  /* sharp corners — retro feel */
   --border-radius-sm: 0px;
   --border-radius-pill: 0px;
 
   /* Shadows */
-  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.06);
-  --shadow-glow: 0 0 20px rgba(0, 255, 65, 0.15), 0 0 1px rgba(0, 255, 65, 0.4);
-  --shadow-glow-strong: 0 0 40px rgba(0, 255, 65, 0.25), 0 0 2px rgba(0, 255, 65, 0.6);
+  --shadow-card: 0 2px 12px rgba(26, 71, 42, 0.06), 0 0 0 1px var(--border);
+  --shadow-glow: 0 4px 20px rgba(26, 71, 42, 0.12);
+  --shadow-glow-strong: 0 8px 32px rgba(26, 71, 42, 0.2);
 
   /* Transitions */
   --transition: all 0.2s ease;
@@ -76,19 +89,14 @@ body {
   min-height: 100vh;
 }
 
-/* Subtle scanline overlay — the secret retro ingredient */
+/* Very subtle paper texture */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.03) 2px,
-      rgba(0, 0, 0, 0.03) 4px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.022'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.5;
+  z-index: 0;
 }
 
 /* ── Typography ─────────────────────────────── */
@@ -102,6 +110,7 @@ h6 {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.01em;
+  color: var(--green);
 }
 
 h1 {
@@ -129,9 +138,9 @@ a {
   transition: var(--transition);
 }
 
-/* Accent / highlight text */
+/* Accent text — lighter green */
 .accent {
-  color: var(--green);
+  color: var(--green-bright);
 }
 
 /* Monospace label */
@@ -152,23 +161,26 @@ section {
   padding: var(--section-padding);
 }
 
-/* Section label — terminal prompt style */
+/* Section label */
 .section-label {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--green);
+  color: var(--green-bright);
+  background: var(--green-faint);
+  border: 1px solid rgba(26, 71, 42, 0.18);
+  padding: 0.3rem 0.8rem;
   margin-bottom: 1.25rem;
 }
 
 .section-label::before {
   content: '//';
-  opacity: 0.5;
+  opacity: 0.45;
   font-size: 0.85em;
 }
 
@@ -188,6 +200,7 @@ section {
   background: var(--bg-card);
   border: 1px solid var(--border);
   padding: var(--card-padding);
+  box-shadow: var(--shadow-card);
   transition: var(--transition);
 }
 
@@ -204,9 +217,9 @@ section {
   gap: 0.5rem;
   padding: 0.6rem 1.5rem;
   font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   cursor: pointer;
   border: none;
@@ -217,26 +230,24 @@ section {
 
 .btn-primary {
   background: var(--green);
-  color: var(--black);
-  box-shadow: 0 0 14px rgba(0, 255, 65, 0.25);
+  color: #f7f6f1;
+  box-shadow: 0 2px 12px rgba(26, 71, 42, 0.25);
 }
 
 .btn-primary:hover {
-  background: #fff;
-  color: var(--black);
-  box-shadow: 0 0 24px rgba(0, 255, 65, 0.4);
+  background: var(--green-mid);
+  box-shadow: 0 4px 20px rgba(26, 71, 42, 0.35);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border);
+  color: var(--green);
+  border: 1px solid var(--border-accent);
 }
 
 .btn-outline:hover {
-  border-color: var(--green);
-  color: var(--green);
-  box-shadow: var(--shadow-glow);
+  background: var(--green-faint);
+  border-color: var(--green-mid);
 }
 
 /* ── Tags / Badges ──────────────────────────── */
@@ -246,9 +257,9 @@ section {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
-  background: transparent;
+  background: var(--green-faint);
   color: var(--green);
-  border: 1px solid rgba(0, 255, 65, 0.3);
+  border: 1px solid rgba(26, 71, 42, 0.2);
   letter-spacing: 0.04em;
 }
 
@@ -277,12 +288,16 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
 }
 
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
 }
 
 .flex-gap {
@@ -291,22 +306,22 @@ section {
   flex-wrap: wrap;
 }
 
-/* Divider — thin green line */
+/* Thin green divider */
 .divider {
   width: 40px;
-  height: 1px;
+  height: 2px;
   background: var(--green);
   margin: 1rem 0 2rem;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* ── Scrollbar ────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--black);
+  background: var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -315,7 +330,7 @@ section {
 
 /* ── Loading skeleton ────────────────────────── */
 .skeleton {
-  background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, #e4e3dd 50%, var(--bg-secondary) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
