@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Articles — Harry</title>
+    <meta name="description" content="Articles and writings by Harry — thoughts on technology, research, and life." />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+</head>
+
+<body>
+
+    <!-- ── Navigation ──────────────────────────── -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Harry.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="articles.html">Articles</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="mailto:your@email.com" class="btn btn-primary"
+                        style="padding:0.4rem 1.2rem;font-size:0.85rem;">Contact Me</a></li>
+            </ul>
+            <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    <nav class="nav-mobile" id="mobileNav">
+        <a href="index.html">🏠 Home</a>
+        <a href="projects.html">🧪 Projects</a>
+        <a href="articles.html">📝 Articles</a>
+        <a href="hobbies.html">🎨 Hobbies</a>
+        <a href="mailto:your@email.com">✉️ Contact</a>
+    </nav>
+
+    <!-- ── Page Hero ──────────────────────────── -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="section-label" data-aos="fade-up">Writing</span>
+            <h1 class="section-title mt-2" data-aos="fade-up" data-aos-delay="100">
+                My <span class="gradient-text">Articles</span>
+            </h1>
+            <p class="section-subtitle" style="margin:0 auto;" data-aos="fade-up" data-aos-delay="200">
+                Thoughts, tutorials, and ramblings on technology, research, and the things I find fascinating.
+            </p>
+        </div>
+    </div>
+
+    <!-- ── Platform Links ─────────────────────── -->
+    <section style="padding:20px 0 60px;">
+        <div class="container">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-bottom:4rem;"
+                data-aos="fade-up">
+                <!-- Medium -->
+                <a href="https://medium.com/@yourusername" target="_blank" class="social-panel"
+                    style="text-decoration:none;">
+                    <div class="social-panel-icon" style="background:rgba(255,255,255,0.05);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                            <path
+                                d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+                        </svg>
+                    </div>
+                    <div class="social-panel-content">
+                        <div class="social-panel-title">Medium</div>
+                        <div class="social-panel-desc">Follow me on Medium for long-form articles and tutorials →</div>
+                    </div>
+                </a>
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/yourusername/recent-activity/articles/" target="_blank"
+                    class="social-panel" style="text-decoration:none;">
+                    <div class="social-panel-icon" style="background:rgba(10,102,194,0.15);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#0a66c2">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                    </div>
+                    <div class="social-panel-content">
+                        <div class="social-panel-title">LinkedIn Articles</div>
+                        <div class="social-panel-desc">Professional posts and career thoughts on LinkedIn →</div>
+                    </div>
+                </a>
+                <!-- Newsletter -->
+                <a href="#newsletter" class="social-panel" style="text-decoration:none;">
+                    <div class="social-panel-icon" style="background:rgba(99,100,248,0.15);">
+                        <span style="font-size:1.6rem;">📬</span>
+                    </div>
+                    <div class="social-panel-content">
+                        <div class="social-panel-title">Newsletter</div>
+                        <div class="social-panel-desc">Get new articles straight to your inbox, no spam →</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Medium Articles ─────────────────────── -->
+    <section style="padding:0 0 80px;">
+        <div class="container">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;"
+                data-aos="fade-up">
+                <div>
+                    <h2 class="section-title">Latest from <span class="gradient-text">Medium</span></h2>
+                    <p style="margin:0;font-size:0.9rem;color:var(--text-muted);">Auto-imported from my Medium feed</p>
+                </div>
+                <a href="https://medium.com/@yourusername" target="_blank" class="btn btn-outline"
+                    style="font-size:0.875rem;">View all on Medium →</a>
+            </div>
+            <div class="grid-3" id="mediumFeed">
+                <!-- Loaded by medium.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Written Here ────────────────────────── -->
+    <section style="background:var(--bg-secondary);padding:80px 0;">
+        <div class="container">
+            <div style="margin-bottom:2.5rem;" data-aos="fade-up">
+                <span class="section-label">Original Posts</span>
+                <h2 class="section-title mt-2">Written <span class="gradient-text">Here</span></h2>
+                <p class="section-subtitle">Articles I've written directly on this site.</p>
+            </div>
+            <div class="grid-3" id="ownArticles">
+                <!-- Own articles -->
+                <div class="article-card" data-aos="fade-up">
+                    <div class="article-meta">
+                        <span class="article-source">✍️ Original</span>
+                        <span class="dot"></span>
+                        <span>Feb 2026</span>
+                        <span class="dot"></span>
+                        <span>5 min read</span>
+                    </div>
+                    <h3 class="article-title">Why I Started This Website (And Why You Should Too)</h3>
+                    <p class="article-excerpt">Building a personal website is one of the best investments you can make
+                        as a professional. Here's what I learned setting up mine and why I think everyone should have
+                        their own corner of the internet...</p>
+                    <a class="article-read-more" href="#">Read more →</a>
+                </div>
+
+                <div class="article-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="article-meta">
+                        <span class="article-source">✍️ Original</span>
+                        <span class="dot"></span>
+                        <span>Jan 2026</span>
+                        <span class="dot"></span>
+                        <span>8 min read</span>
+                    </div>
+                    <h3 class="article-title">Lessons from [Your Research / Project]</h3>
+                    <p class="article-excerpt">After spending a year working on [project/topic], here are the most
+                        important things I learned — both technically and about how to approach complex problems in
+                        general...</p>
+                    <a class="article-read-more" href="#">Read more →</a>
+                </div>
+
+                <div class="article-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="article-meta">
+                        <span class="article-source"
+                            style="background:rgba(99,100,248,0.1);color:var(--accent-3);border-color:rgba(167,139,250,0.2);">🔜
+                            Coming Soon</span>
+                        <span class="dot"></span>
+                        <span>2026</span>
+                    </div>
+                    <h3 class="article-title">Your next article will appear here...</h3>
+                    <p class="article-excerpt">Add your own articles by editing the `articles.html` file. Each article
+                        is a simple HTML block — no CMS or database needed. Just write in plain text!</p>
+                    <a class="article-read-more" href="https://github.com/yourusername/yourusername.github.io"
+                        target="_blank">Edit on GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Newsletter ──────────────────────────── -->
+    <section id="newsletter" style="padding:80px 0 100px;">
+        <div class="container">
+            <div class="card"
+                style="max-width:580px;margin:0 auto;text-align:center;padding:3.5rem;background:linear-gradient(135deg,rgba(99,100,248,0.08),rgba(56,178,244,0.05));"
+                data-aos="zoom-in">
+                <div style="font-size:2.5rem;margin-bottom:1rem;">📬</div>
+                <h2 style="margin-bottom:0.75rem;">Stay in the loop</h2>
+                <p style="margin-bottom:2rem;color:var(--text-secondary);">
+                    New article? I'll send it straight to your inbox. No spam, unsubscribe anytime.
+                </p>
+                <form id="emailForm" style="display:flex;gap:0.75rem;max-width:400px;margin:0 auto;"
+                    onsubmit="handleEmail(event)">
+                    <input type="email" id="emailInput" placeholder="your@email.com" required
+                        style="flex:1;padding:0.75rem 1rem;border-radius:var(--border-radius-pill);background:var(--bg-card-hover);border:1px solid var(--border);color:var(--text-primary);font-size:0.9rem;outline:none;" />
+                    <button type="submit" class="btn btn-primary" style="white-space:nowrap;">Subscribe</button>
+                </form>
+                <p id="emailMsg" style="margin-top:1rem;font-size:0.85rem;color:var(--accent-2);display:none;">✅ Thanks!
+                    You're on the list.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Footer ────────────────────────────── -->
+    <footer class="footer">
+        <div class="container">
+            <span class="footer-logo">Harry.</span>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="articles.html">Articles</a>
+                <a href="hobbies.html">Hobbies</a>
+            </div>
+            <p class="footer-copy">© 2026 Harry. Built with ❤️ and hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/medium.js"></script>
+    <script>
+        // ── CONFIG: Set your Medium username here ──
+        // Example: if your Medium is medium.com/@johndoe, set to 'johndoe'
+        const MEDIUM_USERNAME = 'yourusername'; // ← Change this!
+
+        // Load Medium articles
+        loadMediumArticles(MEDIUM_USERNAME, 'mediumFeed');
+
+        // Simple email subscribe (shows thank-you message; hook up to Mailchimp/ConvertKit later)
+        function handleEmail(e) {
+            e.preventDefault();
+            document.getElementById('emailForm').style.display = 'none';
+            document.getElementById('emailMsg').style.display = 'block';
+        }
+    </script>
+    <style>
+        input::placeholder {
+            color: var(--text-muted);
+        }
+
+        input:focus {
+            border-color: var(--border-hover) !important;
+            box-shadow: 0 0 0 3px rgba(99, 100, 248, 0.15);
+        }
+    </style>
+</body>
+
+</html>

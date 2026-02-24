@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects & Publications — Harry</title>
+    <meta name="description" content="Harry's research projects, open-source work, and academic publications." />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+</head>
+
+<body>
+
+    <!-- ── Navigation ──────────────────────────── -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Harry.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="articles.html">Articles</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="mailto:your@email.com" class="btn btn-primary"
+                        style="padding:0.4rem 1.2rem;font-size:0.85rem;">Contact Me</a></li>
+            </ul>
+            <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    <nav class="nav-mobile" id="mobileNav">
+        <a href="index.html">🏠 Home</a>
+        <a href="projects.html">🧪 Projects</a>
+        <a href="articles.html">📝 Articles</a>
+        <a href="hobbies.html">🎨 Hobbies</a>
+        <a href="mailto:your@email.com">✉️ Contact</a>
+    </nav>
+
+    <!-- ── Page Hero ──────────────────────────── -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="section-label" data-aos="fade-up">My Work</span>
+            <h1 class="section-title mt-2" data-aos="fade-up" data-aos-delay="100">
+                Projects & <span class="gradient-text">Publications</span>
+            </h1>
+            <p class="section-subtitle" style="margin:0 auto;" data-aos="fade-up" data-aos-delay="200">
+                A collection of research projects, open-source contributions, and academic publications I've worked on.
+            </p>
+        </div>
+    </div>
+
+    <!-- ── Projects + Publications ────────────── -->
+    <section>
+        <div class="container">
+            <!-- Filter tabs -->
+            <div class="filter-tabs" data-aos="fade-up" id="filterTabs">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="project">🛠️ Projects</button>
+                <button class="filter-tab" data-filter="publication">📄 Publications</button>
+            </div>
+
+            <!-- Cards grid -->
+            <div class="grid-3" id="cardsGrid"></div>
+        </div>
+    </section>
+
+    <!-- ── GitHub CTA ──────────────────────────── -->
+    <section style="padding:60px 0 100px;">
+        <div class="container">
+            <div class="card"
+                style="text-align:center;padding:3.5rem;background:linear-gradient(135deg,rgba(99,100,248,0.08),rgba(56,178,244,0.05));"
+                data-aos="zoom-in">
+                <div style="font-size:3rem;margin-bottom:1rem;">🐙</div>
+                <h3 style="margin-bottom:0.75rem;">More on GitHub</h3>
+                <p style="max-width:480px;margin:0 auto 2rem;">
+                    All my open-source work lives on GitHub. Star repos you find useful — it really means a lot!
+                </p>
+                <a href="https://github.com/yourusername" target="_blank" class="btn btn-primary">Visit My GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Footer ────────────────────────────── -->
+    <footer class="footer">
+        <div class="container">
+            <span class="footer-logo">Harry.</span>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="articles.html">Articles</a>
+                <a href="hobbies.html">Hobbies</a>
+            </div>
+            <p class="footer-copy">© 2026 Harry. Built with ❤️ and hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script>
+        // ── Data: Edit these to add your real projects and publications ──
+        const items = [
+            {
+                type: 'project',
+                icon: '🤖',
+                title: 'Autonomous Drone Navigation System',
+                desc: 'A real-time computer vision system for autonomous drone path-following using ArUco markers and PID control. Achieved sub-centimetre precision in indoor environments.',
+                tags: ['Python', 'OpenCV', 'ROS', 'DJI Tello'],
+                links: [
+                    { label: '⭐ GitHub', url: 'https://github.com/yourusername/drone-nav' },
+                    { label: '🎬 Demo', url: '#' }
+                ]
+            },
+            {
+                type: 'project',
+                icon: '📱',
+                title: 'Family Social App',
+                desc: 'A React Native mobile application for keeping family connected — sharing photos, events, and memories in a private, secure space.',
+                tags: ['React Native', 'TypeScript', 'Firebase', 'Expo'],
+                links: [
+                    { label: '⭐ GitHub', url: 'https://github.com/yourusername/fam-app' }
+                ]
+            },
+            {
+                type: 'project',
+                icon: '🌐',
+                title: 'Personal Website',
+                desc: 'This very website! A modern personal portfolio built with vanilla HTML, CSS and JS, designed for performance and hosted on GitHub Pages.',
+                tags: ['HTML', 'CSS', 'JavaScript', 'GitHub Pages'],
+                links: [
+                    { label: '⭐ GitHub', url: 'https://github.com/yourusername/yourusername.github.io' },
+                    { label: '🔗 Live', url: '#' }
+                ]
+            },
+            {
+                type: 'project',
+                icon: '📊',
+                title: 'Data Analysis Dashboard',
+                desc: 'An interactive data visualisation dashboard for exploring large datasets. Built with Python and Plotly, deployed as a web app.',
+                tags: ['Python', 'Plotly', 'Pandas', 'Streamlit'],
+                links: [
+                    { label: '⭐ GitHub', url: '#' },
+                    { label: '🔗 Live Demo', url: '#' }
+                ]
+            },
+            {
+                type: 'publication',
+                icon: '📄',
+                title: 'Deep Learning Approaches to [Your Research Topic]',
+                desc: 'We propose a novel deep learning architecture for [problem]. Our method outperforms state-of-the-art baselines by 12% on [benchmark], demonstrating the effectiveness of [contribution].',
+                tags: ['NeurIPS 2024', 'Deep Learning', 'Computer Vision'],
+                links: [
+                    { label: '📄 PDF', url: '#' },
+                    { label: '🔗 DOI', url: '#' },
+                    { label: '⭐ Code', url: '#' }
+                ]
+            },
+            {
+                type: 'publication',
+                icon: '📋',
+                title: 'A Survey of [Research Area]: Methods, Challenges and Future Directions',
+                desc: 'A comprehensive survey covering 150+ papers on [research area]. We categorise existing approaches, identify key challenges, and propose a research agenda for the next decade.',
+                tags: ['IEEE TPAMI 2023', 'Survey', 'Literature Review'],
+                links: [
+                    { label: '📄 PDF', url: '#' },
+                    { label: '🔗 DOI', url: '#' }
+                ]
+            },
+            {
+                type: 'publication',
+                icon: '🔬',
+                title: 'Efficient [Method] for [Application]',
+                desc: 'We introduce [Method Name], a computationally efficient technique for [application] that achieves competitive results with 10× less compute than previous approaches.',
+                tags: ['ICML 2023', 'Efficiency', 'ML Systems'],
+                links: [
+                    { label: '📄 PDF', url: '#' },
+                    { label: '🔗 DOI', url: '#' },
+                    { label: '⭐ Code', url: '#' }
+                ]
+            }
+        ];
+
+        function renderCards(filter) {
+            const grid = document.getElementById('cardsGrid');
+            const filtered = filter === 'all' ? items : items.filter(i => i.type === filter);
+
+            grid.innerHTML = filtered.map((item, idx) => `
+      <div class="project-card" data-aos="fade-up" data-aos-delay="${(idx % 3) * 100}">
+        <div class="project-icon">${item.icon}</div>
+        <h3 class="project-title">${item.title}</h3>
+        <p class="project-desc">${item.desc}</p>
+        <div class="project-tags">
+          ${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+        <div class="project-links">
+          ${item.links.map(l => `<a class="project-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('')}
+        </div>
+      </div>
+    `).join('');
+
+            // Re-run AOS for new elements
+            document.querySelectorAll('[data-aos]:not(.aos-animate)').forEach(el => {
+                setTimeout(() => el.classList.add('aos-animate'), 50);
+            });
+        }
+
+        // Filter tabs
+        document.getElementById('filterTabs').addEventListener('click', e => {
+            const tab = e.target.closest('.filter-tab');
+            if (!tab) return;
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            renderCards(tab.dataset.filter);
+        });
+
+        // Initial render
+        renderCards('all');
+    </script>
+</body>
+
+</html>

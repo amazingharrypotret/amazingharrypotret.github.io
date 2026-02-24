@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harry — Portfolio & Personal Website</title>
+  <meta name="description" content="Personal website of Harry — researcher, developer, and creator. Explore my projects, publications, articles, and more." />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Harry.</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="hobbies.html">Hobbies</a></li>
+      <li><a href="mailto:your@email.com" class="btn btn-primary" style="padding:0.4rem 1.2rem;font-size:0.85rem;">Contact Me</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileNav">
+  <a href="index.html">🏠 Home</a>
+  <a href="projects.html">🧪 Projects</a>
+  <a href="articles.html">📝 Articles</a>
+  <a href="hobbies.html">🎨 Hobbies</a>
+  <a href="mailto:your@email.com">✉️ Contact</a>
+</nav>
+
+<!-- ── Hero ──────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow">👋 Hello World, I'm</p>
+        <h1 class="hero-title">
+          <span class="gradient-text">Harry</span>
+          <span class="hero-typewriter" id="typewriter"></span>
+          <span class="cursor"></span>
+        </h1>
+        <p class="hero-desc">
+          I research, build, and write about things I care about — from technology and science to the small beautiful corners of life. Welcome to my little corner of the internet.
+        </p>
+        <div class="hero-btns">
+          <a href="assets/cv.pdf" download class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV
+          </a>
+          <a href="projects.html" class="btn btn-outline">View My Work →</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/yourusername" target="_blank" class="social-link" title="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link" title="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://twitter.com/yourusername" target="_blank" class="social-link" title="Twitter / X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://medium.com/@yourusername" target="_blank" class="social-link" title="Medium">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          </a>
+          <a href="https://instagram.com/yourusername" target="_blank" class="social-link" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-avatar float">
+        <div class="hero-avatar-ring"></div>
+        <img class="hero-avatar-img" src="https://api.dicebear.com/8.x/notionists/svg?seed=Harry&backgroundColor=0a0e1a&radius=20" alt="Harry's profile photo" />
+        <div class="hero-avatar-badge">✨ Open to opportunities</div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      Scroll
+      <div class="scroll-indicator-arrow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats ──────────────────────────────── -->
+<section style="padding: 0 0 80px;">
+  <div class="container">
+    <div class="stats-bar" data-aos="fade-up">
+      <div class="stat">
+        <span class="stat-number count-up" data-target="12" data-suffix="+">0+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number count-up" data-target="5" data-suffix="+">0+</span>
+        <span class="stat-label">Publications</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number count-up" data-target="20" data-suffix="+">0+</span>
+        <span class="stat-label">Articles</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number count-up" data-target="5" data-suffix=" yrs">0 yrs</span>
+        <span class="stat-label">Experience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ──────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div data-aos="fade-right">
+        <span class="section-label">About Me</span>
+        <h2 class="section-title">Passionate about <span class="gradient-text">building things</span> that matter</h2>
+        <div class="divider"></div>
+        <p style="margin-bottom:1.25rem;">
+          Hi! I'm Harry — a researcher, developer, and curious human being. I love exploring the intersection of technology and human experience, whether that's through academic research, building software, or writing about ideas that fascinate me.
+        </p>
+        <p style="margin-bottom:1.25rem;">
+          When I'm not deep in a research paper or debugging code, I'm usually out taking photos, travelling to new places, or obsessing over the perfect cup of coffee.
+        </p>
+        <p style="margin-bottom:2rem;">
+          <strong style="color:var(--text-primary);">Currently:</strong> <span style="color:var(--accent-2);">Open to research collaborations and exciting opportunities.</span>
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="assets/cv.pdf" download class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV
+          </a>
+          <a href="mailto:your@email.com" class="btn btn-outline">Get in touch</a>
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <h3 style="margin-bottom:1.5rem;color:var(--text-secondary);font-weight:600;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.1em;">Skills & Expertise</h3>
+        <div class="skills-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="skill-card">
+            <span class="skill-card-icon">🐍</span>
+            <div class="skill-card-name">Python</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--width: 0.92" data-width="0.92"></div></div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-card-icon">🤖</span>
+            <div class="skill-card-name">Machine Learning</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.85"></div></div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-card-icon">📊</span>
+            <div class="skill-card-name">Data Science</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.88"></div></div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-card-icon">🌐</span>
+            <div class="skill-card-name">Web Dev</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.75"></div></div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-card-icon">📝</span>
+            <div class="skill-card-name">Technical Writing</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.82"></div></div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-card-icon">☁️</span>
+            <div class="skill-card-name">Cloud / DevOps</div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.70"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Experience & Education ─────────────── -->
+<section id="cv" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3.5rem;" data-aos="fade-up">
+      <span class="section-label">Resume</span>
+      <h2 class="section-title">Experience & <span class="gradient-text">Education</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;" class="cv-grid">
+      <!-- Experience -->
+      <div data-aos="fade-right">
+        <h3 style="margin-bottom:2rem;display:flex;align-items:center;gap:0.5rem;">
+          <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">💼 Experience</span>
+        </h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2023 — Present</div>
+            <div class="timeline-role">Senior Researcher</div>
+            <div class="timeline-org">Your Organization / University</div>
+            <div class="timeline-desc">Leading research on [topic]. Collaborated with international teams on [project]. Published X papers in top venues.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2021 — 2023</div>
+            <div class="timeline-role">Research Engineer</div>
+            <div class="timeline-org">Previous Company</div>
+            <div class="timeline-desc">Built and deployed machine learning systems at scale. Mentored junior engineers. Drove a 30% improvement in [metric].</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2019 — 2021</div>
+            <div class="timeline-role">Graduate Research Assistant</div>
+            <div class="timeline-org">University Name</div>
+            <div class="timeline-desc">Investigating [research area] under Prof. [Name]. Supported by [fellowship/grant].</div>
+          </div>
+        </div>
+      </div>
+      <!-- Education -->
+      <div data-aos="fade-left">
+        <h3 style="margin-bottom:2rem;display:flex;align-items:center;gap:0.5rem;">
+          <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🎓 Education</span>
+        </h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2019 — 2023</div>
+            <div class="timeline-role">Ph.D. in [Your Field]</div>
+            <div class="timeline-org">University Name, Country</div>
+            <div class="timeline-desc">Thesis: "[Your Thesis Title]". Advisor: Prof. [Name]. GPA: X.X/4.0.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2017 — 2019</div>
+            <div class="timeline-role">M.Sc. in [Your Field]</div>
+            <div class="timeline-org">University Name, Country</div>
+            <div class="timeline-desc">Graduated with distinction. Thesis on [topic]. Exchange semester at [University].</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2013 — 2017</div>
+            <div class="timeline-role">B.Sc. in [Your Field]</div>
+            <div class="timeline-org">University Name, Country</div>
+            <div class="timeline-desc">First class honours. President of [Club]. Recipient of [Scholarship].</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ───────────────────────────── -->
+<section id="contact">
+  <div class="container" style="text-align:center;">
+    <div data-aos="zoom-in">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title mt-2">Let's <span class="gradient-text">Connect</span></h2>
+      <p style="max-width:520px;margin:0 auto 2.5rem;">
+        Whether you have a research idea, collaboration proposal, or just want to say hi — my inbox is always open.
+      </p>
+      <div class="flex-gap" style="justify-content:center;margin-bottom:3rem;">
+        <a href="mailto:your@email.com" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send an Email
+        </a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" class="btn btn-outline">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <span class="footer-logo">Harry.</span>
+    <div class="footer-socials">
+      <a href="https://github.com/yourusername" target="_blank" class="social-link" title="GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link" title="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="articles.html">Articles</a>
+      <a href="hobbies.html">Hobbies</a>
+    </div>
+    <p class="footer-copy">© 2026 Harry. Built with ❤️ and hosted on GitHub Pages.</p>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+<script>
+  // Typewriter effect
+  initTypewriter(
+    document.getElementById('typewriter'),
+    ['Researcher & Developer.', 'Open Source Contributor.', 'Technical Writer.', 'Lifelong Learner.']
+  );
+
+  // Animate skill bars on scroll
+  const skillObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          const w = bar.dataset.width;
+          bar.style.setProperty('--final-width', w);
+          setTimeout(() => bar.classList.add('animated'), 200);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skills-grid').forEach(g => skillObserver.observe(g));
+</script>
+<style>
+  .skill-bar-fill.animated { transform: scaleX(var(--final-width, 1)); }
+  @media (max-width: 768px) {
+    .cv-grid { grid-template-columns: 1fr !important; }
+    .hero-content { gap: 2rem; }
+  }
+</style>
+</body>
+</html>
