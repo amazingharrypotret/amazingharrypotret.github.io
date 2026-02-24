@@ -1,27 +1,27 @@
 /* =============================================
-   ANIMATIONS.CSS — Entrance, Hover, Transitions
+   ANIMATIONS.CSS — Minimal Retro Transitions
    ============================================= */
 
 /* ── Fade-in Up (entrance) ───────────────────── */
 [data-aos] {
     opacity: 0;
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 [data-aos="fade-up"] {
-    transform: translateY(30px);
+    transform: translateY(20px);
 }
 
 [data-aos="fade-right"] {
-    transform: translateX(-30px);
+    transform: translateX(-20px);
 }
 
 [data-aos="fade-left"] {
-    transform: translateX(30px);
+    transform: translateX(20px);
 }
 
 [data-aos="zoom-in"] {
-    transform: scale(0.92);
+    transform: scale(0.96);
 }
 
 [data-aos].aos-animate {
@@ -29,7 +29,7 @@
     transform: none;
 }
 
-/* Stagger delays for child elements */
+/* Stagger delays */
 [data-aos-delay="100"] {
     transition-delay: 0.1s;
 }
@@ -50,89 +50,35 @@
     transition-delay: 0.5s;
 }
 
-/* ── Float animation for avatar ─────────────── */
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.float {
-    animation: float 5s ease-in-out infinite;
-}
-
-/* ── Shimmer button effect ───────────────────── */
-.btn-primary::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: skewX(-20deg);
-    transition: left 0.6s ease;
-}
-
-.btn-primary:hover::after {
-    left: 140%;
-}
-
-/* ── Pulse glow ring ─────────────────────────── */
-@keyframes pulseRing {
-    0% {
-        box-shadow: 0 0 0 0 rgba(99, 100, 248, 0.5);
-    }
-
-    70% {
-        box-shadow: 0 0 0 12px rgba(99, 100, 248, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(99, 100, 248, 0);
-    }
-}
-
-.pulse {
-    animation: pulseRing 2.5s infinite;
-}
-
-/* ── Gradient border animation ───────────────── */
-@keyframes borderRotate {
-    to {
-        --angle: 360deg;
-    }
-}
-
-/* ── Counter animation ───────────────────────── */
-.count-up {
-    display: inline-block;
-}
-
-/* ── Page transition ─────────────────────────── */
+/* ── Page entrance ───────────────────────────── */
 .page-transition {
-    animation: pageIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pageIn 0.35s ease;
 }
 
 @keyframes pageIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
-/* ── Typing cursor blink ─────────────────────── */
+/* ── Green glow pulse (used on hover elements) ── */
+@keyframes greenPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 8px rgba(0, 255, 65, 0.15);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.35);
+    }
+}
+
+/* ── Terminal blink ──────────────────────────── */
 @keyframes blink {
 
     0%,
@@ -145,54 +91,31 @@
     }
 }
 
-/* ── Scroll indicator bounce ─────────────────── */
-.scroll-indicator {
+/* ── Btn shimmer (subtle) ────────────────────── */
+.btn-primary::after {
+    content: '';
     position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    animation: fadeInUp 1s 1.5s both;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15), transparent);
+    transition: left 0.5s ease;
 }
 
-.scroll-indicator-arrow {
-    width: 20px;
-    height: 20px;
-    border-right: 2px solid var(--text-muted);
-    border-bottom: 2px solid var(--text-muted);
-    transform: rotate(45deg);
-    animation: arrowBounce 1.5s ease-in-out infinite;
+.btn-primary:hover::after {
+    left: 140%;
 }
 
-@keyframes arrowBounce {
-
-    0%,
-    100% {
-        transform: rotate(45deg) translateY(0);
-        opacity: 1;
-    }
-
-    50% {
-        transform: rotate(45deg) translateY(5px);
-        opacity: 0.5;
-    }
-}
-
+/* ── Fade in up helper (for use outside data-aos) */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateX(-50%) translateY(10px);
+        transform: translateY(16px);
     }
 
     to {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
     }
 }
