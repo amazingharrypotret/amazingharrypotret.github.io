@@ -28,7 +28,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .nav-logo {
@@ -40,8 +40,8 @@
 }
 
 .nav-logo::before {
-    content: '';
-    opacity: 0;
+    content: '> ';
+    opacity: 0.45;
 }
 
 .nav-links {
@@ -147,6 +147,7 @@
 
 /* ── Hero Section ────────────────────────────── */
 .hero {
+    position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
