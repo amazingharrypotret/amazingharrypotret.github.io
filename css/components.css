@@ -28,7 +28,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .nav-logo {
@@ -40,8 +40,8 @@
 }
 
 .nav-logo::before {
-    content: '> ';
-    opacity: 0.45;
+    content: '';
+    opacity: 0;
 }
 
 .nav-links {
@@ -150,7 +150,8 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding-top: var(--nav-height);
+    padding-top: calc(var(--nav-height) * 2);
+    padding-bottom: var(--nav-height);
     border-bottom: 1px solid var(--border);
     background: var(--bg-primary);
 }
@@ -262,7 +263,7 @@
     height: 240px;
     object-fit: cover;
     border: 2px solid var(--border-accent);
-    filter: sepia(20%) saturate(0.6) hue-rotate(80deg);
+
     display: block;
 }
 
