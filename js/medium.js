@@ -1,7 +1,7 @@
 /* =============================================
    MEDIUM.JS — Fetch & render Medium RSS feed
-   Proxy: allorigins.win (confirmed working with Medium)
-   Features: title, date, read time, thumbnail image
+   Multi-proxy fallback chain (5 methods)
+   Adapted from MurphyFreelance approach
    ============================================= */
 
 async function loadMediumArticles(username, containerId) {
@@ -11,75 +11,119 @@ async function loadMediumArticles(username, containerId) {
     showSkeletons(container);
 
     const rssUrl = `https://medium.com/feed/@${username}`;
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
 
-    try {
-        const res = await fetch(proxyUrl);
-        if (!res.ok) throw new Error('Network error');
-        const json = await res.json();
-        if (!json.contents) throw new Error('Empty response');
-        const items = parseRSS(json.contents);
-        if (!items.length) throw new Error('No articles found');
-        renderArticles(container, items);
-    } catch (err) {
-        console.error('Medium feed error:', err);
-        showError(container);
+    const methods = [
+        // Method 1: AllOrigins (returns JSON wrapper)
+        async () => {
+            const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
+            if (!res.ok) throw new Error(`AllOrigins ${res.status}`);
+            const data = await res.json();
+            if (!data.contents) throw new Error('No content');
+            return parseRSSXML(data.contents);
+        },
+        // Method 2: RSS2JSON
+        async () => {
+            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`);
+            if (!res.ok) throw new Error(`rss2json ${res.status}`);
+            const data = await res.json();
+            if (data.status !== 'ok' || !data.items?.length) throw new Error('rss2json empty');
+            return data.items.map(item => ({
+                title: item.title,
+                link: item.link,
+                pubDate: item.pubDate,
+                content: item.content || item.description || '',
+                thumbnail: item.thumbnail || item.enclosure?.link || '',
+            }));
+        },
+        // Method 3: proxy.cors.sh
+        async () => {
+            const res = await fetch(`https://proxy.cors.sh/${rssUrl}`);
+            if (!res.ok) throw new Error(`cors.sh ${res.status}`);
+            return parseRSSXML(await res.text());
+        },
+        // Method 4: corsproxy.org
+        async () => {
+            const res = await fetch(`https://corsproxy.org/?${encodeURIComponent(rssUrl)}`);
+            if (!res.ok) throw new Error(`corsproxy.org ${res.status}`);
+            return parseRSSXML(await res.text());
+        },
+        // Method 5: codetabs
+        async () => {
+            const res = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(rssUrl)}`);
+            if (!res.ok) throw new Error(`codetabs ${res.status}`);
+            return parseRSSXML(await res.text());
+        },
+    ];
+
+    for (let i = 0; i < methods.length; i++) {
+        try {
+            const items = await methods[i]();
+            if (items?.length) {
+                renderArticles(container, items.slice(0, 6));
+                return;
+            }
+        } catch (e) {
+            console.warn(`Medium feed method ${i + 1} failed:`, e.message);
+        }
     }
+
+    showError(container);
 }
 
-function parseRSS(xmlText) {
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(xmlText, 'text/xml');
-
+function parseRSSXML(xmlText) {
+    const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
     return Array.from(xml.querySelectorAll('item')).map(item => {
-        // content:encoded holds the full HTML post
+        // content:encoded — try with namespace first
         const contentEl = item.getElementsByTagNameNS(
             'http://purl.org/rss/1.0/modules/content/', 'encoded'
         )[0];
+        const content = contentEl?.textContent
+            || item.querySelector('description')?.textContent || '';
 
-        // Thumbnail: try media:thumbnail first, then first <img> in content
+        // Thumbnail: media:thumbnail → first <img> in content
         const mediaThumb = item.getElementsByTagNameNS(
             'http://search.yahoo.com/mrss/', 'thumbnail'
         )[0];
         let thumbnail = mediaThumb?.getAttribute('url') || '';
-        if (!thumbnail && contentEl) {
-            const tmp = document.createElement('div');
-            tmp.innerHTML = contentEl.textContent;
-            thumbnail = tmp.querySelector('img')?.src || '';
+        if (!thumbnail) {
+            const match = content.match(/<img[^>]+src="([^">]+)"/);
+            thumbnail = match?.[1] || '';
         }
 
-        // <link> in RSS 2.0 is a text node, not an attribute
+        // <link> is a text node in RSS 2.0, not an attribute
         const linkEl = item.querySelector('link');
-        const link = linkEl
-            ? (linkEl.nextSibling?.nodeValue?.trim() || linkEl.textContent?.trim())
-            : item.querySelector('guid')?.textContent?.trim() || '#';
+        const link = linkEl?.nextSibling?.nodeValue?.trim()
+            || linkEl?.textContent?.trim()
+            || item.querySelector('guid')?.textContent?.trim() || '#';
 
         return {
             title: item.querySelector('title')?.textContent?.trim() || '',
             link,
             pubDate: item.querySelector('pubDate')?.textContent || '',
-            content: contentEl?.textContent || item.querySelector('description')?.textContent || '',
+            content,
             thumbnail,
         };
     });
 }
 
 function renderArticles(container, items) {
-    container.innerHTML = items.slice(0, 6).map(item => {
+    container.innerHTML = items.map(item => {
         const date = item.pubDate
             ? new Date(item.pubDate).toLocaleDateString('en-US', {
                 year: 'numeric', month: 'short', day: 'numeric'
             })
             : '';
+
         const tmp = document.createElement('div');
         tmp.innerHTML = item.content;
         const text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
-        const excerpt = text.substring(0, 160) + '…';
+        const excerpt = text.substring(0, 180) + '…';
         const readTime = Math.max(1, Math.round(text.split(/\s+/).length / 200));
 
         const imgHtml = item.thumbnail
-            ? `<img src="${item.thumbnail}" alt="${item.title}" loading="lazy"
-                style="width:100%;height:180px;object-fit:cover;margin-bottom:1.25rem;display:block;">`
+            ? `<img src="${item.thumbnail}" alt="" loading="lazy"
+                style="width:100%;height:180px;object-fit:cover;display:block;"
+                onerror="this.style.display='none'">`
             : '';
 
         return `
@@ -107,9 +151,9 @@ function showSkeletons(container) {
     container.innerHTML = Array(3).fill(`
         <div class="article-card">
           <div class="skeleton" style="height:180px;width:100%;margin-bottom:12px;"></div>
-          <div class="skeleton" style="height:12px;width:40%;margin-bottom:12px;"></div>
-          <div class="skeleton" style="height:20px;width:85%;margin-bottom:8px;"></div>
-          <div class="skeleton" style="height:14px;width:70%;"></div>
+          <div class="skeleton" style="height:12px;width:40%;margin-bottom:12px;margin-left:1.5rem;"></div>
+          <div class="skeleton" style="height:20px;width:85%;margin-bottom:8px;margin-left:1.5rem;"></div>
+          <div class="skeleton" style="height:14px;width:70%;margin-left:1.5rem;margin-bottom:1.5rem;"></div>
         </div>`).join('');
 }
 
@@ -118,7 +162,7 @@ function showError(container) {
         <div class="card" style="text-align:center;padding:3rem;grid-column:1/-1;">
           <div style="font-size:2.5rem;margin-bottom:1rem;">📝</div>
           <h3 style="margin-bottom:0.5rem;">Couldn't load Medium articles</h3>
-          <p style="margin-bottom:1.5rem;">Check back soon, or read directly on Medium.</p>
+          <p style="margin-bottom:1.5rem;">All proxy methods failed. Check back soon or read on Medium directly.</p>
           <a href="https://medium.com/@hariyanto.tan95" target="_blank" class="btn btn-outline">
             Visit Medium →
           </a>
