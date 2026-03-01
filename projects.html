@@ -179,8 +179,28 @@
             //     ]
             // },
             {
+                type: 'project',
+                icon: '💎',
+                images: [
+                    'assets/projects/fam_social/homepage.png',
+                    'assets/projects/fam_social/profile_page.png',
+                    'assets/projects/fam_social/brand_updates.png',
+                ], // drop your screenshots here (name them fam-social-1.png etc.)
+                imageLayout: 'portrait', // side-by-side phone screenshots on dark background
+                title: 'FAM Social — Fan Attention Mining',
+                desc: 'A Web3-inspired social platform where fans earn FAM tokens by staying informed about their favourite brands and artists. Built an AI pipeline that scrapes 5–15 news sources per brand daily, then uses Gemini Flash to distil them into a punchy 250–300-word update. Fans read the update within a timed session and answer a comprehension quiz to unlock token rewards — turning passive fandom into measurable engagement.',
+                tags: ['Python', 'Web Scraping', 'Gemini Flash', 'AI Summarisation', 'React Native', 'Web3'],
+                links: [
+                    // { label: '🔗 Live App', url: '#' }
+                ],
+            },
+            {
                 type: 'publication',
                 icon: '🔬',
+                images: [
+                    'assets/projects/diabetes_detection/system_overview.png',
+                    'assets/projects/diabetes_detection/e_nose.png'
+                ],
                 title: 'Detection of Diabetes from Gas Analysis of Human Breath using E-Nose',
                 desc: 'Proposed a non-invasive, low-cost electronic nose (e-Nose) system to detect diabetes by analysing breath biomarkers (acetone, CO, CO₂, VOCs). Used Discrete Wavelet Transform for denoising and k-NN classification, achieving 95.0% accuracy and 0.898 kappa — offering a portable alternative to invasive blood sampling.',
                 tags: ['IEEE ICTS 2017', 'E-Nose', 'Diabetes Detection', 'k-NN', '95% Accuracy'],
@@ -194,23 +214,109 @@
             const grid = document.getElementById('cardsGrid');
             const filtered = filter === 'all' ? items : items.filter(i => i.type === filter);
 
-            grid.innerHTML = filtered.map((item, idx) => `
-      <div class="project-card" data-aos="fade-up" data-aos-delay="${(idx % 3) * 100}">
-        <div class="project-icon">${item.icon}</div>
-        <h3 class="project-title">${item.title}</h3>
-        <p class="project-desc">${item.desc}</p>
-        <div class="project-tags">
-          ${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-        </div>
-        <div class="project-links">
-          ${item.links.map(l => `<a class="project-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('')}
-        </div>
-      </div>
-    `).join('');
+            grid.innerHTML = filtered.map((item, idx) => {
+                // Normalise: support both image (string) and images (array)
+                const imgs = item.images || (item.image ? [item.image] : []);
 
-            // Re-run AOS for new elements
+                // Portrait layout: all screenshots side-by-side on dark background
+                const isPortrait = item.imageLayout === 'portrait';
+
+                let imageHtml = '';
+                if (imgs.length > 0) {
+                    if (isPortrait) {
+                        // Portrait carousel: one at a time, arrows + dots, contain fit
+                        imageHtml = `
+                        <div class="card-carousel" data-idx="0" style="position:relative;width:100%;height:360px;overflow:hidden;background:#1a1a2e;">
+                          <div class="carousel-track" style="display:flex;height:100%;transition:transform 0.4s ease;">
+                            ${imgs.map(src => `
+                            <div style="min-width:100%;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                              <img src="${src}" loading="lazy"
+                                style="max-width:100%;max-height:100%;object-fit:contain;"
+                                onerror="this.parentElement.style.display='none'">
+                            </div>`).join('')}
+                          </div>
+                          ${imgs.length > 1 ? `
+                          <div style="position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:6px;">
+                            ${imgs.map((_, i) => `<span class="cdot" data-i="${i}"
+                              style="width:7px;height:7px;border-radius:50%;background:${i === 0 ? '#fff' : 'rgba(255,255,255,0.4)'};cursor:pointer;transition:background 0.3s;"></span>`).join('')}
+                          </div>
+                          <button onclick="carouselMove(this.closest('.card-carousel'),-1)"
+                            style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;">‹</button>
+                          <button onclick="carouselMove(this.closest('.card-carousel'),1)"
+                            style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;">›</button>
+                          ` : ''}
+                        </div>`;
+                    } else {
+                        // Landscape carousel
+                        imageHtml = `
+                        <div class="card-carousel" data-idx="0" style="position:relative;width:100%;height:220px;overflow:hidden;background:var(--bg-secondary);">
+                          <div class="carousel-track" style="display:flex;height:100%;transition:transform 0.4s ease;">
+                            ${imgs.map(src => `
+                            <div style="min-width:100%;height:100%;flex-shrink:0;overflow:hidden;">
+                              <img src="${src}" loading="lazy"
+                                style="width:100%;height:100%;object-fit:cover;"
+                                onerror="this.parentElement.style.display='none'">
+                            </div>`).join('')}
+                          </div>
+                          ${imgs.length > 1 ? `
+                          <div style="position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px;">
+                            ${imgs.map((_, i) => `<span class="cdot" data-i="${i}"
+                              style="width:7px;height:7px;border-radius:50%;background:${i === 0 ? '#fff' : 'rgba(255,255,255,0.4)'};cursor:pointer;transition:background 0.3s;"></span>`).join('')}
+                          </div>
+                          <button onclick="carouselMove(this.closest('.card-carousel'),-1)"
+                            style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;">‹</button>
+                          <button onclick="carouselMove(this.closest('.card-carousel'),1)"
+                            style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;">›</button>
+                          ` : ''}
+                        </div>`;
+                    }
+                }
+
+                return `
+                <div class="project-card" data-aos="fade-up" data-aos-delay="${(idx % 3) * 100}" style="padding:0;overflow:hidden;">
+                  ${imageHtml}
+                  <div style="padding:1.75rem;">
+                    ${imgs.length === 0 ? `<div class="project-icon">${item.icon}</div>` : ''}
+                    <h3 class="project-title">${item.title}</h3>
+                    <p class="project-desc">${item.desc}</p>
+                    <div class="project-tags">
+                      ${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                      ${item.links.map(l => `<a class="project-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('')}
+                    </div>
+                  </div>
+                </div>`;
+            }).join('');
+
+            initCarousels();
             document.querySelectorAll('[data-aos]:not(.aos-animate)').forEach(el => {
                 setTimeout(() => el.classList.add('aos-animate'), 50);
+            });
+        }
+
+        function carouselMove(el, dir) {
+            const imgs = el.querySelectorAll('img');
+            let idx = parseInt(el.dataset.idx) + dir;
+            idx = (idx + imgs.length) % imgs.length;
+            el.dataset.idx = idx;
+            el.querySelector('.carousel-track').style.transform = `translateX(-${idx * 100}%)`;
+            el.querySelectorAll('.cdot').forEach((d, i) =>
+                d.style.background = i === idx ? '#fff' : 'rgba(255,255,255,0.4)');
+        }
+
+        function initCarousels() {
+            document.querySelectorAll('.card-carousel').forEach(el => {
+                const imgs = el.querySelectorAll('img');
+                if (imgs.length <= 1) return;
+                el.querySelectorAll('.cdot').forEach((dot, i) => {
+                    dot.addEventListener('click', () => {
+                        el.dataset.idx = i;
+                        el.querySelector('.carousel-track').style.transform = `translateX(-${i * 100}%)`;
+                        el.querySelectorAll('.cdot').forEach((d, j) =>
+                            d.style.background = j === i ? '#fff' : 'rgba(255,255,255,0.4)');
+                    });
+                });
             });
         }
 
