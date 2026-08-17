@@ -1,45 +1,45 @@
 /* =============================================
-   BASE.CSS — Professional Data Theme
-   Forest Green / Steel / Clean White
+   BASE.CSS — Slytherin Theme
+   Slytherin Green / Silver / Off-White
    ============================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600;700;900&display=swap');
 
 /* ── Design Tokens ──────────────────────────── */
 :root {
-  /* Core palette */
+  /* Slytherin palette */
   --green: #1a472a;
-  /* deep forest green — primary brand */
-  --green-mid: #2e6b46;
+  /* deep Slytherin green */
+  --green-mid: #2d6a4f;
   /* mid green for hover states */
-  --green-bright: #3d9966;
-  /* emerald accent — visible on light bg */
-  --silver: #8b9daa;
-  /* steel blue-grey — modern tech feel */
-  --gold: #b0853a;
-  /* warm amber — visible accent */
+  --green-bright: #3a8c5c;
+  /* lighter green for small accents */
+  --silver: #aaa9ad;
+  /* Slytherin silver */
+  --gold: #8b7355;
+  /* subtle warm tone for variety */
 
-  --green-faint: rgba(26, 71, 42, 0.06);
-  --green-glow: rgba(26, 71, 42, 0.12);
+  --green-faint: rgba(26, 71, 42, 0.07);
+  --green-glow: rgba(26, 71, 42, 0.15);
 
-  /* Backgrounds — clean & minimal */
-  --bg-primary: #f5f7f5;
-  /* light sage-white — clean, professional */
-  --bg-secondary: #eaede9;
-  /* sage-tinted grey for contrast sections */
+  /* Backgrounds — light/off-white */
+  --bg-primary: #f7f6f1;
+  /* warm parchment-ish white */
+  --bg-secondary: #eeede7;
+  /* slightly darker for contrast sections */
   --bg-card: #ffffff;
-  --bg-card-hover: #f0f5f1;
-  /* subtle green tint on hover */
+  --bg-card-hover: #f0f4f1;
+  /* very light green tint on hover */
 
   /* Borders */
-  --border: rgba(26, 71, 42, 0.10);
-  --border-accent: rgba(26, 71, 42, 0.35);
+  --border: rgba(26, 71, 42, 0.12);
+  --border-accent: rgba(26, 71, 42, 0.4);
 
   /* Text */
-  --text-primary: #0e1e13;
-  /* near-black with green undertone */
-  --text-secondary: rgba(14, 30, 19, 0.58);
-  --text-muted: rgba(14, 30, 19, 0.38);
+  --text-primary: #111a14;
+  /* near-black with a green undertone */
+  --text-secondary: rgba(17, 26, 20, 0.58);
+  --text-muted: rgba(17, 26, 20, 0.36);
 
   /* Typography */
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
