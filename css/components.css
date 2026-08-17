@@ -330,21 +330,6 @@
     }
 }
 
-/* ── About Section Grid ──────────────────────── */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-}
-
-@media (max-width: 960px) {
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-}
-
 /* ── Stats Bar ───────────────────────────────── */
 .stats-bar {
     display: flex;
