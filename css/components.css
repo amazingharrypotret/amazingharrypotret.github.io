@@ -867,3 +867,251 @@
     font-size: 0.72rem;
     color: rgba(247, 246, 241, 0.45);
 }
+/* ── Stack Diagram ───────────────────────────── */
+.stack-wrap {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+}
+
+.stack-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.4rem 0;
+}
+
+.stack-rail-cap {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--green);
+    opacity: 0.5;
+}
+
+.stack-rail-line {
+    flex: 1;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--green), rgba(26, 71, 42, 0.18));
+}
+
+.stack-rail-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--green-bright);
+    white-space: nowrap;
+}
+
+.stack-wrap,
+.stack-layers,
+.stack-layer > div,
+.ai-card {
+    min-width: 0;
+}
+
+.stack-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+}
+
+.stack-layer {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    background: var(--bg-card);
+    padding: 1.4rem 1.6rem;
+    transition: var(--transition);
+}
+
+.stack-layer::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--green);
+    opacity: var(--layer-strength, 0.2);
+}
+
+.stack-layer:hover {
+    background: var(--bg-card-hover);
+}
+
+.stack-layer-ai {
+    background: linear-gradient(135deg, rgba(26, 71, 42, 0.07), rgba(58, 140, 92, 0.03));
+}
+
+.stack-layer-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--green);
+    opacity: 0.45;
+    padding-top: 0.2rem;
+}
+
+.stack-layer-title {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.35rem;
+}
+
+.stack-layer-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 0.7rem;
+}
+
+.stack-layer-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.stack-layer-tags .tag {
+    font-size: 0.62rem;
+    padding: 0.12rem 0.45rem;
+}
+
+.stack-layer-metric {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--bg-primary);
+    background: var(--green);
+    padding: 0.25rem 0.6rem;
+    white-space: nowrap;
+}
+
+.stack-note {
+    margin-top: 1.5rem;
+    padding-left: calc(1.5rem + 22px);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.stack-note strong {
+    color: var(--green);
+    font-weight: 700;
+}
+
+/* ── AI in Production ────────────────────────── */
+.ai-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+}
+
+.ai-card {
+    background: var(--bg-card);
+    padding: 1.85rem;
+    transition: var(--transition);
+}
+
+.ai-card:hover {
+    background: var(--bg-card-hover);
+}
+
+.ai-card-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    display: block;
+}
+
+.ai-card-title {
+    font-family: var(--font-mono);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.3rem;
+}
+
+.ai-card-org {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.9rem;
+}
+
+.ai-card-desc {
+    font-size: 0.87rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.1rem;
+}
+
+.ai-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.ai-card-tags .tag {
+    font-size: 0.63rem;
+    padding: 0.14rem 0.45rem;
+}
+
+.ai-stack-line {
+    margin-top: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+}
+
+.ai-stack-line strong {
+    color: var(--green-bright);
+}
+
+@media (max-width: 768px) {
+    .stack-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    .stack-rail {
+        display: none;
+    }
+
+    .stack-layer {
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        padding: 1.25rem 1.1rem;
+    }
+
+    .stack-layer-metric {
+        grid-column: 2;
+        justify-self: start;
+        margin-top: 0.6rem;
+    }
+
+    .stack-note {
+        padding-left: 0;
+    }
+
+    .ai-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
