@@ -1115,3 +1115,227 @@
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+/* =============================================
+   CAREER ARC  (builder to leader progression)
+   ============================================= */
+.arc {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+.arc-step {
+  position: relative;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border);
+}
+
+.arc-step::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+}
+
+.arc-step.is-now::before {
+  background: var(--green-bright);
+}
+
+.arc-step::after {
+  content: '→';
+  position: absolute;
+  top: -0.95rem;
+  right: -1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.arc-step:last-child::after {
+  content: '';
+}
+
+.arc-years {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--green-bright);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.45rem;
+}
+
+.arc-role {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+.arc-detail {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* =============================================
+   LEADERSHIP COMPETENCY CARDS
+   ============================================= */
+.lead-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.lead-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0.95rem 1rem;
+  transition: var(--transition);
+}
+
+.lead-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-accent);
+}
+
+.lead-card-icon {
+  font-size: 1.05rem;
+}
+
+.lead-card-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 0.35rem 0 0.25rem;
+}
+
+.lead-card-proof {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* =============================================
+   HOW I LEAD  (principles + hands-on proof)
+   ============================================= */
+.principles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 2.5rem;
+}
+
+.principle {
+  border-left: 2px solid var(--green);
+  padding-left: 1.35rem;
+}
+
+.principle-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--green-bright);
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+
+.principle-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.principle-body {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.principle-proof {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--green);
+  background: var(--green-faint);
+  padding: 0.2rem 0.5rem;
+}
+
+.handson {
+  margin-top: 3.5rem;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  padding: 2rem 2.25rem;
+}
+
+.handson-head {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--green);
+  margin-bottom: 1.35rem;
+}
+
+.handson-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.handson-item {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.handson-when {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.handson-what {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .principles {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .handson-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .arc {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .arc-step::after {
+    content: '';
+  }
+
+  .handson-list {
+    grid-template-columns: 1fr;
+  }
+
+  .handson {
+    padding: 1.5rem 1.25rem;
+  }
+}
