@@ -1114,6 +1114,63 @@
     .ai-grid {
         grid-template-columns: minmax(0, 1fr);
     }
+
+    .awards-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ── Awards & Achievements ───────────────────── */
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+}
+
+.award-card {
+    background: var(--bg-card);
+    padding: 1.85rem;
+    transition: var(--transition);
+}
+
+.award-card:hover {
+    background: var(--bg-card-hover);
+}
+
+.award-card-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    display: block;
+}
+
+.award-card .accomplish-metric-badge {
+    margin-bottom: 0.75rem;
+}
+
+.award-card-title {
+    font-family: var(--font-mono);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.3rem;
+}
+
+.award-card-org {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.9rem;
+}
+
+.award-card-desc {
+    font-size: 0.87rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
 }
 
 /* =============================================
