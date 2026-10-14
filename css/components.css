@@ -148,11 +148,11 @@
 /* ── Hero Section ────────────────────────────── */
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     align-items: center;
-    padding-top: calc(var(--nav-height) * 2);
-    padding-bottom: var(--nav-height);
+    padding-top: calc(var(--nav-height) + 3.5rem);
+    padding-bottom: 3.5rem;
     border-bottom: 1px solid var(--border);
     background: var(--bg-primary);
 }
@@ -169,7 +169,7 @@
     font-size: 0.75rem;
     font-weight: 400;
     color: var(--green-bright);
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.9rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     display: flex;
@@ -218,9 +218,9 @@
 
 .hero-desc {
     font-size: 0.95rem;
-    margin: 1.5rem 0 2.25rem;
+    margin: 1.25rem 0 1.75rem;
     max-width: 480px;
-    line-height: 1.9;
+    line-height: 1.75;
     color: var(--text-secondary);
 }
 
@@ -228,7 +228,7 @@
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
 }
 
 .hero-socials {
@@ -271,6 +271,71 @@
     display: block;
 }
 
+/* Credential chips pinned to the photo corners */
+.hero-photo {
+    position: relative;
+}
+
+.hero-chip {
+    position: absolute;
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    box-shadow: 0 6px 18px rgba(17, 26, 20, 0.08);
+    padding: 0.45rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-primary);
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+/* Each chip links down to the section with the full detail */
+.hero-chip:hover,
+.hero-chip:focus-visible {
+    border-color: var(--green);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(17, 26, 20, 0.14);
+}
+
+.hero-chip-label {
+    display: block;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green-bright);
+}
+
+/* Kept to the sky band and the archway so they never cover the subject */
+.hero-chip-exp {
+    top: -16px;
+    left: -50px;
+}
+
+.hero-chip-award {
+    top: 38px;
+    right: -18px;
+}
+
+/* Wider than the others, so it reaches further into the gap beside the text */
+.hero-chip-edu {
+    top: 132px;
+    left: -96px;
+}
+
+/* Narrow desktops have less gap: pull it back in and drop the "(ML & AI)" detail */
+@media (max-width: 1039px) {
+    .hero-chip-edu {
+        left: -50px;
+    }
+
+    .hero-chip-extra {
+        display: none;
+    }
+}
+
 .hero-avatar-badge {
     width: 100%;
     background: var(--green);
@@ -290,7 +355,7 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
+    display: none; /* the "Scroll" cue only suits a full-screen hero */
     flex-direction: column;
     align-items: center;
     gap: 0.4rem;
@@ -341,7 +406,7 @@
 
 .stat {
     flex: 1;
-    padding: 1.5rem 2rem;
+    padding: 1.1rem 1.5rem;
     min-width: 120px;
     border-right: 1px solid var(--border);
 }
@@ -352,7 +417,7 @@
 
 .stat-number {
     font-family: var(--font-mono);
-    font-size: 1.8rem;
+    font-size: 1.55rem;
     font-weight: 700;
     color: var(--green);
     display: block;
@@ -379,7 +444,7 @@
 
 .skill-card {
     background: var(--bg-card);
-    padding: 1.25rem 1.5rem;
+    padding: 0.85rem 1.1rem;
     transition: var(--transition);
 }
 
@@ -392,8 +457,8 @@
 }
 
 .skill-card-icon {
-    font-size: 1.4rem;
-    margin-bottom: 0.6rem;
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
     display: block;
 }
 
@@ -433,7 +498,7 @@
 
 .timeline-item {
     position: relative;
-    padding-bottom: 2.25rem;
+    padding-bottom: 1.5rem;
 }
 
 .timeline-item::before {
@@ -473,18 +538,37 @@
 .timeline-desc {
     font-size: 0.85rem;
     color: var(--text-muted);
-    line-height: 1.75;
+    line-height: 1.6;
 }
 
-/* ── Accomplishment Timeline ─────────────────── */
-.accomplishments-columns {
+/* ── Accomplishment Grid ─────────────────────── */
+.accomplish-group-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--green);
+    margin: 1.75rem 0 0.85rem;
+}
+
+.accomplish-group-title:first-child {
+    margin-top: 0;
+}
+
+/* Each group fills one row on desktop: 5 items -> 5 columns, 4 items -> 4 */
+.accomplish-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.75rem;
 }
 
-.accomplish-timeline .timeline-item {
-    padding-bottom: 1.75rem;
+.accomplish-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 0.95rem 1rem 1rem;
+    transition: var(--transition);
+}
+
+.accomplish-card:hover {
+    border-color: var(--border-accent);
 }
 
 .accomplish-metric-badge {
@@ -500,19 +584,40 @@
     line-height: 1.4;
 }
 
-.accomplish-timeline .timeline-role {
-    font-size: 0.88rem;
+.accomplish-card .accomplish-metric-badge {
+    font-size: 0.72rem;
 }
 
-.accomplish-timeline .timeline-desc {
+.accomplish-card .timeline-role {
     font-size: 0.82rem;
-    line-height: 1.7;
+    line-height: 1.35;
+    margin-bottom: 0.15rem;
 }
 
+.accomplish-card .timeline-org {
+    font-size: 0.72rem;
+    margin-bottom: 0.35rem;
+}
+
+.accomplish-card .timeline-desc {
+    font-size: 0.76rem;
+    line-height: 1.55;
+}
+
+/* Phones: two compact tiles per row instead of one long column */
 @media (max-width: 768px) {
-    .accomplishments-columns {
-        grid-template-columns: 1fr !important;
-        gap: 2rem;
+    .accomplish-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .accomplish-card {
+        padding: 0.8rem 0.75rem;
+    }
+
+    /* An odd one out (e.g. the 5th leadership item) takes the full row */
+    .accomplish-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
     }
 }
 
@@ -719,6 +824,63 @@
     color: var(--green-mid);
 }
 
+/* ── Article Archive ──────────────────────────── */
+.archive-list {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+}
+
+.archive-item {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr auto;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.archive-item:last-child {
+    border-bottom: none;
+}
+
+.archive-item:hover {
+    background: var(--bg-card-hover);
+}
+
+.archive-date {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.archive-title {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--green);
+}
+
+.archive-topic {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: right;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .archive-item {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+    }
+
+    .archive-topic {
+        text-align: left;
+    }
+}
+
 /* ── Hobby Cards ──────────────────────────────── */
 .hobby-card {
     background: var(--bg-card);
@@ -808,7 +970,7 @@
 .footer {
     background: var(--green);
     border-top: 2px solid var(--green);
-    padding: 2.5rem 0;
+    padding: 2rem 0;
     text-align: center;
 }
 
@@ -929,7 +1091,7 @@
     gap: 1.5rem;
     align-items: start;
     background: var(--bg-card);
-    padding: 1.4rem 1.6rem;
+    padding: 1rem 1.4rem;
     transition: var(--transition);
 }
 
@@ -973,8 +1135,8 @@
 .stack-layer-desc {
     font-size: 0.85rem;
     color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: 0.7rem;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
 }
 
 .stack-layer-tags {
@@ -1000,7 +1162,7 @@
 }
 
 .stack-note {
-    margin-top: 1.5rem;
+    margin-top: 1.1rem;
     padding-left: calc(1.5rem + 22px);
     font-family: var(--font-mono);
     font-size: 0.78rem;
@@ -1024,7 +1186,7 @@
 
 .ai-card {
     background: var(--bg-card);
-    padding: 1.85rem;
+    padding: 1.35rem;
     transition: var(--transition);
 }
 
@@ -1035,7 +1197,7 @@
 .ai-card-icon {
     font-size: 1.4rem;
     line-height: 1;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.6rem;
     display: block;
 }
 
@@ -1059,8 +1221,8 @@
 .ai-card-desc {
     font-size: 0.87rem;
     color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0.85rem;
 }
 
 .ai-card-tags {
@@ -1075,7 +1237,7 @@
 }
 
 .ai-stack-line {
-    margin-top: 1.75rem;
+    margin-top: 1.25rem;
     font-family: var(--font-mono);
     font-size: 0.72rem;
     color: var(--text-muted);
@@ -1122,8 +1284,8 @@
 .arc {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.75rem;
-  margin-bottom: 3.5rem;
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
 }
 
 .arc-step {
@@ -1191,7 +1353,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .lead-card {
@@ -1229,7 +1391,7 @@
 .principles {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem 2.5rem;
+  gap: 1.5rem 2rem;
 }
 
 .principle {
@@ -1255,7 +1417,7 @@
 .principle-body {
   font-size: 0.875rem;
   color: var(--text-secondary);
-  line-height: 1.75;
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -1270,10 +1432,10 @@
 }
 
 .handson {
-  margin-top: 3.5rem;
+  margin-top: 2.25rem;
   border: 1px solid var(--border);
   background: var(--bg-card);
-  padding: 2rem 2.25rem;
+  padding: 1.5rem 1.75rem;
 }
 
 .handson-head {

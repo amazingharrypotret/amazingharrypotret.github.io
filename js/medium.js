@@ -4,9 +4,14 @@
    Adapted from MurphyFreelance approach
    ============================================= */
 
-async function loadMediumArticles(username, containerId) {
+// options.since: only show posts published on or after this date (e.g. '2026-01-01').
+// Older posts are listed statically on the page, because Medium's feed only keeps the latest 10.
+async function loadMediumArticles(username, containerId, options = {}) {
     const container = document.getElementById(containerId);
     if (!container || !username) return;
+
+    const profileUrl = `https://medium.com/@${username}`;
+    const since = options.since ? new Date(options.since) : null;
 
     showSkeletons(container);
 
@@ -32,7 +37,7 @@ async function loadMediumArticles(username, containerId) {
                 link: item.link,
                 pubDate: item.pubDate,
                 content: item.content || item.description || '',
-                thumbnail: item.thumbnail || item.enclosure?.link || '',
+                thumbnail: item.thumbnail || item.enclosure?.link || firstImage(item.content || item.description),
             }));
         },
         // Method 3: proxy.cors.sh
@@ -59,7 +64,9 @@ async function loadMediumArticles(username, containerId) {
         try {
             const items = await methods[i]();
             if (items?.length) {
-                renderArticles(container, items.slice(0, 6));
+                const recent = since ? items.filter(item => new Date(item.pubDate) >= since) : items;
+                if (recent.length) renderArticles(container, recent.slice(0, 6), profileUrl);
+                else showEmpty(container, profileUrl);
                 return;
             }
         } catch (e) {
@@ -67,7 +74,7 @@ async function loadMediumArticles(username, containerId) {
         }
     }
 
-    showError(container);
+    showError(container, profileUrl);
 }
 
 function parseRSSXML(xmlText) {
@@ -84,11 +91,7 @@ function parseRSSXML(xmlText) {
         const mediaThumb = item.getElementsByTagNameNS(
             'http://search.yahoo.com/mrss/', 'thumbnail'
         )[0];
-        let thumbnail = mediaThumb?.getAttribute('url') || '';
-        if (!thumbnail) {
-            const match = content.match(/<img[^>]+src="([^">]+)"/);
-            thumbnail = match?.[1] || '';
-        }
+        const thumbnail = mediaThumb?.getAttribute('url') || firstImage(content);
 
         // <link> is a text node in RSS 2.0, not an attribute
         const linkEl = item.querySelector('link');
@@ -106,7 +109,36 @@ function parseRSSXML(xmlText) {
     });
 }
 
-function renderArticles(container, items) {
+// First real image in a post's HTML, skipping Medium's tracking pixel (medium.com/_/stat)
+function firstImage(html) {
+    const sources = [...String(html || '').matchAll(/<img[^>]+src="([^">]+)"/g)].map(m => m[1]);
+    return sources.find(src => !src.includes('/_/stat')) || '';
+}
+
+// Some proxies return titles with entities still encoded (e.g. "&amp;"), so decode before escaping
+function decodeEntities(value) {
+    return new DOMParser().parseFromString(String(value), 'text/html').documentElement.textContent;
+}
+
+// The feed arrives via third-party proxies, so treat everything in it as untrusted text.
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, ch => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[ch]);
+}
+
+// Only allow https links and images hosted on medium.com (incl. its CDN subdomains).
+function mediumUrl(value) {
+    try {
+        const url = new URL(value);
+        const onMedium = url.hostname === 'medium.com' || url.hostname.endsWith('.medium.com');
+        return url.protocol === 'https:' && onMedium ? url.href : null;
+    } catch {
+        return null;
+    }
+}
+
+function renderArticles(container, items, profileUrl) {
     container.innerHTML = items.map(item => {
         const date = item.pubDate
             ? new Date(item.pubDate).toLocaleDateString('en-US', {
@@ -114,14 +146,16 @@ function renderArticles(container, items) {
             })
             : '';
 
-        const tmp = document.createElement('div');
-        tmp.innerHTML = item.content;
-        const text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
-        const excerpt = text.substring(0, 180) + '…';
+        // DOMParser builds an inert document: no scripts run and no images load
+        const doc = new DOMParser().parseFromString(item.content, 'text/html');
+        const text = (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+        const excerpt = text.length > 180 ? text.substring(0, 180) + '…' : text;
         const readTime = Math.max(1, Math.round(text.split(/\s+/).length / 200));
 
-        const imgHtml = item.thumbnail
-            ? `<img src="${item.thumbnail}" alt="" loading="lazy"
+        const link = mediumUrl(item.link) || profileUrl;
+        const thumbnail = mediumUrl(item.thumbnail);
+        const imgHtml = thumbnail
+            ? `<img src="${escapeHTML(thumbnail)}" alt="" loading="lazy"
                 style="width:100%;height:180px;object-fit:cover;display:block;"
                 onerror="this.style.display='none'">`
             : '';
@@ -133,13 +167,13 @@ function renderArticles(container, items) {
             <div class="article-meta">
               <span class="article-source">✍️ Medium</span>
               <span class="dot"></span>
-              <span>${date}</span>
+              <span>${escapeHTML(date)}</span>
               <span class="dot"></span>
               <span>${readTime} min read</span>
             </div>
-            <h3 class="article-title" style="margin-top:0.6rem;">${item.title}</h3>
-            <p class="article-excerpt">${excerpt}</p>
-            <a class="article-read-more" href="${item.link}" target="_blank" rel="noopener">
+            <h3 class="article-title" style="margin-top:0.6rem;">${escapeHTML(decodeEntities(item.title))}</h3>
+            <p class="article-excerpt">${escapeHTML(excerpt)}</p>
+            <a class="article-read-more" href="${escapeHTML(link)}" target="_blank" rel="noopener">
               Read on Medium →
             </a>
           </div>
@@ -157,13 +191,25 @@ function showSkeletons(container) {
         </div>`).join('');
 }
 
-function showError(container) {
+function showEmpty(container, profileUrl) {
+    container.innerHTML = `
+        <div class="card" style="text-align:center;padding:3rem;grid-column:1/-1;">
+          <div style="font-size:2.5rem;margin-bottom:1rem;">✍️</div>
+          <h3 style="margin-bottom:0.5rem;">First new article coming soon</h3>
+          <p style="margin-bottom:1.5rem;">New posts on Medium will appear here automatically.</p>
+          <a href="${profileUrl}" target="_blank" rel="noopener" class="btn btn-outline">
+            Follow on Medium →
+          </a>
+        </div>`;
+}
+
+function showError(container, profileUrl) {
     container.innerHTML = `
         <div class="card" style="text-align:center;padding:3rem;grid-column:1/-1;">
           <div style="font-size:2.5rem;margin-bottom:1rem;">📝</div>
           <h3 style="margin-bottom:0.5rem;">Couldn't load Medium articles</h3>
           <p style="margin-bottom:1.5rem;">All proxy methods failed. Check back soon or read on Medium directly.</p>
-          <a href="https://medium.com/@hariyanto.tan95" target="_blank" class="btn btn-outline">
+          <a href="${profileUrl}" target="_blank" rel="noopener" class="btn btn-outline">
             Visit Medium →
           </a>
         </div>`;

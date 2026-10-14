@@ -46,8 +46,8 @@
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
-  --section-padding: 100px 0;
-  --card-padding: 2rem;
+  --section-padding: 64px 0;
+  --card-padding: 1.5rem;
   --border-radius: 0px;
   /* sharp corners — retro feel */
   --border-radius-sm: 0px;
@@ -84,7 +84,7 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.7;
+  line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -114,12 +114,12 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 700;
 }
 
 h2 {
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
 }
 
 h3 {
@@ -128,7 +128,7 @@ h3 {
 
 p {
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
   font-size: 0.95rem;
 }
 
@@ -175,7 +175,7 @@ section {
   background: var(--green-faint);
   border: 1px solid rgba(26, 71, 42, 0.18);
   padding: 0.3rem 0.8rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .section-label::before {
@@ -185,13 +185,13 @@ section {
 }
 
 .section-title {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .section-subtitle {
   color: var(--text-secondary);
   font-size: 0.95rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
   max-width: 560px;
 }
 
@@ -352,7 +352,7 @@ section {
   }
 
   section {
-    padding: 70px 0;
+    padding: 48px 0;
   }
 
   h1 {
